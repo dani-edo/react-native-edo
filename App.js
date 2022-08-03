@@ -2,7 +2,7 @@ import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
 import {
   Button,
-  ScrollView,
+  FlatList,
   StyleSheet,
   Text,
   TextInput,
@@ -18,7 +18,10 @@ export default function App() {
   };
 
   const addGoalHandler = () => {
-    setCourseGoals((oldCourseGoals) => [...oldCourseGoals, enteredGoalText]);
+    setCourseGoals((oldCourseGoals) => [
+      ...oldCourseGoals,
+      { text: enteredGoalText, id: Math.random().toString() },
+    ]);
   };
 
   return (
@@ -33,14 +36,16 @@ export default function App() {
         <Button title="Add Goal" onPress={addGoalHandler} />
       </View>
       <View style={styles.goalsContainer}>
-        <ScrollView>
-          {courseGoals &&
-            courseGoals.map((goal, i) => (
-              <View style={styles.goalItem} key={i}>
-                <Text style={styles.goalText}>{goal}</Text>
-              </View>
-            ))}
-        </ScrollView>
+        <FlatList
+          data={courseGoals}
+          renderItem={({ item }) => (
+            <View style={styles.goalItem}>
+              <Text style={styles.goalText}>{item.text}</Text>
+            </View>
+          )}
+          keyExtractor={(item) => item.id}
+          alwaysBounceVertical={false}
+        />
       </View>
     </View>
   );
