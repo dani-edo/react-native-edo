@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { Button, Modal, StyleSheet, TextInput, View } from "react-native";
+import {
+  Button,
+  Image,
+  Modal,
+  StyleSheet,
+  TextInput,
+  View,
+} from "react-native";
 
 function GoalInput({ addGoal, visible, onCancel }) {
   const [enteredGoalText, setEnteredGoalText] = useState("");
@@ -15,6 +22,10 @@ function GoalInput({ addGoal, visible, onCancel }) {
 
   return (
     <Modal visible={visible} animationType="slide">
+      <Image
+        source={require("../assets/images/goal.png")}
+        style={styles.image}
+      />
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.textInput}
@@ -24,10 +35,10 @@ function GoalInput({ addGoal, visible, onCancel }) {
         />
         <View style={styles.buttonContainer}>
           <View style={styles.button}>
-            <Button title="Add Goal" onPress={addGoalHandler} />
+            <Button title="Cancel" onPress={onCancel} color="#f31282" />
           </View>
           <View style={styles.button}>
-            <Button title="Cancel" onPress={onCancel} />
+            <Button title="Add Goal" onPress={addGoalHandler} color="#5e0acc" />
           </View>
         </View>
       </View>
@@ -42,16 +53,18 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginBottom: 24,
-    borderBottomWidth: 1,
-    borderBottomColor: "#cccccc",
     padding: 16,
+    margin: 0,
   },
   textInput: {
-    borderWidth: 1,
-    borderColor: "#cccccc",
+    borderWidth: 2,
+    borderColor: "#e4d0ff",
+    backgroundColor: "#e4d0ff",
     width: "100%",
-    padding: 8,
+    padding: 16,
+    color: "#5e0acc",
+    fontSize: 19,
+    borderRadius: 6,
   },
   buttonContainer: {
     flexDirection: "row",
@@ -60,5 +73,14 @@ const styles = StyleSheet.create({
   button: {
     width: 100,
     marginHorizontal: 8,
+  },
+  image: {
+    width: "100%",
+    height: "100%",
+    // margin: 20,
+    position: "absolute",
+    left: 0,
+    top: 0,
+    right: 0,
   },
 });

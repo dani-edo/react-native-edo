@@ -26,7 +26,7 @@ export default function App() {
 
   return (
     <View style={styles.appContainer}>
-      <StatusBar style="auto" />
+      <StatusBar style="inverted" />
       <Button
         title="Add New Goal"
         color="#5e0acc"
@@ -60,9 +60,9 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 50,
     paddingHorizontal: 15,
-    backgroundColor: "#ffff",
   },
   goalsContainer: {
     flex: 5,
+    marginTop: 15,
   },
 });
